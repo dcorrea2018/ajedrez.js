@@ -40,6 +40,7 @@ const piezas = [
 
 const textoBusqueda = document.getElementById("textBusqueda");
 const resultadoBusqueda = document.getElementById("resultadoBusqueda");
+const imgPieza = document.getElementById("imgPieza");
 
 //Funciones
 
@@ -53,5 +54,7 @@ function buscar() {
         const resultado = piezas.find(pieza => pieza.nombre.toLowerCase() == termino_busqueda.toLowerCase());
         console.log(resultado);
         resultadoBusqueda.innerHTML = resultado.movimiento;
+        // imgPieza.src = resultado.imagen;
+        imgPieza.setAttribute("src", resultado.imagen);
     }
 }
