@@ -58,3 +58,11 @@ function buscar() {
         imgPieza.setAttribute("src", resultado.imagen);
     }
 }
+
+textoBusqueda.addEventListener('keypress', function (event) {
+    //console.log(event.key);
+    if (event.key === "Enter") {
+        event.preventDefault();
+        buscar();
+    }
+});
