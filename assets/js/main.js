@@ -42,27 +42,37 @@ const textoBusqueda = document.getElementById("textBusqueda");
 const resultadoBusqueda = document.getElementById("resultadoBusqueda");
 const imgPieza = document.getElementById("imgPieza");
 
-//Funciones
-
+// Funciones
 function buscar() {
     const termino_busqueda = textoBusqueda.value;
     if (termino_busqueda == "") {
-        alert("Ingrese unb termino de Busqueda")
+        alert("Ingrese un termino de busqueda");
     } else {
-        console.log("entro a la funcion buscar");
-        console.log("El Usuario esta buscando: ", termino_busqueda);
+        console.log("Entro a la funcion buscar");
+        console.log("El usuario esta buscando: ", termino_busqueda);
         const resultado = piezas.find(pieza => pieza.nombre.toLowerCase() == termino_busqueda.toLowerCase());
         console.log(resultado);
-        resultadoBusqueda.innerHTML = resultado.movimiento;
+        // Las dos manera osibles de hacerlos.....
         // imgPieza.src = resultado.imagen;
-        imgPieza.setAttribute("src", resultado.imagen);
+
+        if (resultado == undefined) {
+            alert("No se encontro la pieza");
+            resultadoBusqueda.innerHTML = "No hay resultados";
+            imgPieza.src = "assets/images/logo.png";
+        } else {
+            resultadoBusqueda.innerHTML = resultado.movimiento;
+            imgPieza.setAttribute("src", resultado.imagen);
+        }
     }
 }
 
-textoBusqueda.addEventListener('keypress', function (event) {
-    //console.log(event.key);
+
+textoBusqueda.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         buscar();
     }
 });
+
+
+
